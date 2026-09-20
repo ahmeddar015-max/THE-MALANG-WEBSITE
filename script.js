@@ -1,0 +1,877 @@
+// =========================================
+// THE MALANG
+// STEP 1 - NAVBAR
+// =========================================
+
+const navbar = document.querySelector(".navbar");
+
+
+// Change navbar appearance when scrolling
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+
+        navbar.style.background = "rgba(8, 8, 8, 0.92)";
+        navbar.style.backdropFilter = "blur(15px)";
+
+    } else {
+
+        navbar.style.background =
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent)";
+
+        navbar.style.backdropFilter = "none";
+    }
+
+});
+
+// =========================================
+// THE MALANG
+// MUSIC PLAYER
+// =========================================
+
+
+// SONGS
+
+const songs = [
+
+    {
+        title: "AADAT",
+        artist: "UBAID AHMAD",
+        file: "music/song1.mp3",
+        cover: "images/musiccover1.jpeg"
+    },
+
+    {
+        title: "HALKA HALKA SUROOR",
+        artist: "THE MALANG",
+        file: "music/song2.mp3",
+        cover: "images/musiccover2.jpeg"
+    },
+
+    {
+        title: "KAAHE MOSE",
+        artist: "SUHAIL YOUSUF",
+        file: "music/song3.mp3",
+        cover: "images/musiccover3.jpeg"
+    }
+
+];
+
+
+// AUDIO
+
+const audio = new Audio();
+
+let currentSong = 0;
+
+let isPlaying = false;
+
+
+// ELEMENTS
+
+const playBtn =
+    document.getElementById("playBtn");
+
+const prevBtn =
+    document.getElementById("prevBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const songTitle =
+    document.getElementById("songTitle");
+
+const songArtist =
+    document.getElementById("songArtist");
+
+const albumImage =
+    document.getElementById("albumImage");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressContainer =
+    document.getElementById("progressContainer");
+
+const currentTime =
+    document.getElementById("currentTime");
+
+const duration =
+    document.getElementById("duration");
+
+const volumeControl =
+    document.getElementById("volumeControl");
+
+const songItems =
+    document.querySelectorAll(".song-item");
+
+
+// =========================================
+// LOAD SONG
+// =========================================
+
+function loadSong(index) {
+
+    const song = songs[index];
+
+    songTitle.textContent =
+        song.title;
+
+    songArtist.textContent =
+        song.artist;
+
+    albumImage.src =
+        song.cover;
+
+    audio.src =
+        song.file;
+
+    audio.load();
+
+    currentSong = index;
+
+    updateActiveSong();
+
+}
+
+
+// =========================================
+// PLAY SONG
+// =========================================
+
+function playSong() {
+
+    audio.play();
+
+    isPlaying = true;
+
+    playBtn.textContent = "Ⅱ";
+
+}
+
+
+// =========================================
+// PAUSE SONG
+// =========================================
+
+function pauseSong() {
+
+    audio.pause();
+
+    isPlaying = false;
+
+    playBtn.textContent = "▶";
+
+}
+
+
+// =========================================
+// PLAY / PAUSE
+// =========================================
+
+playBtn.addEventListener("click", () => {
+
+    if (isPlaying) {
+
+        pauseSong();
+
+    } else {
+
+        playSong();
+
+    }
+
+});
+
+
+// =========================================
+// NEXT SONG
+// =========================================
+
+nextBtn.addEventListener("click", () => {
+
+    currentSong++;
+
+    if (currentSong >= songs.length) {
+
+        currentSong = 0;
+
+    }
+
+    loadSong(currentSong);
+
+    playSong();
+
+});
+
+
+// =========================================
+// PREVIOUS SONG
+// =========================================
+
+prevBtn.addEventListener("click", () => {
+
+    currentSong--;
+
+    if (currentSong < 0) {
+
+        currentSong =
+            songs.length - 1;
+
+    }
+
+    loadSong(currentSong);
+
+    playSong();
+
+});
+
+
+// =========================================
+// SONG LIST
+// =========================================
+
+songItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const index =
+            parseInt(item.dataset.index);
+
+        loadSong(index);
+
+        playSong();
+
+    });
+
+});
+
+
+// =========================================
+// PROGRESS UPDATE
+// =========================================
+
+audio.addEventListener("timeupdate", () => {
+
+    if (!audio.duration) return;
+
+    const progress =
+        (audio.currentTime /
+        audio.duration) * 100;
+
+    progressBar.style.width =
+        `${progress}%`;
+
+
+    currentTime.textContent =
+        formatTime(audio.currentTime);
+
+});
+
+
+// =========================================
+// DURATION
+// =========================================
+
+audio.addEventListener("loadedmetadata", () => {
+
+    duration.textContent =
+        formatTime(audio.duration);
+
+});
+
+
+// =========================================
+// CLICK PROGRESS BAR
+// =========================================
+
+progressContainer.addEventListener("click", (event) => {
+
+    const width =
+        progressContainer.clientWidth;
+
+    const clickX =
+        event.offsetX;
+
+    const duration =
+        audio.duration;
+
+    audio.currentTime =
+        (clickX / width) * duration;
+
+});
+
+
+// =========================================
+// VOLUME
+// =========================================
+
+volumeControl.addEventListener("input", () => {
+
+    audio.volume =
+        volumeControl.value;
+
+});
+
+
+// =========================================
+// SONG ENDED
+// =========================================
+
+audio.addEventListener("ended", () => {
+
+    currentSong++;
+
+    if (currentSong >= songs.length) {
+
+        currentSong = 0;
+
+    }
+
+    loadSong(currentSong);
+
+    playSong();
+
+});
+
+
+// =========================================
+// ACTIVE SONG
+// =========================================
+
+function updateActiveSong() {
+
+    songItems.forEach(item => {
+
+        item.classList.remove("active");
+
+    });
+
+    songItems[currentSong]
+        .classList.add("active");
+
+}
+
+
+// =========================================
+// TIME FORMAT
+// =========================================
+
+function formatTime(seconds) {
+
+    if (isNaN(seconds)) {
+
+        return "0:00";
+
+    }
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const secs =
+        Math.floor(seconds % 60);
+
+    return `${minutes}:${secs
+        .toString()
+        .padStart(2, "0")}`;
+
+}
+
+
+// =========================================
+// INITIALIZE
+// =========================================
+
+loadSong(0);
+
+
+
+/* =========================================
+   GALLERY LIGHTBOX
+========================================= */
+
+const galleryItems =
+    document.querySelectorAll(".gallery-item");
+
+const galleryLightbox =
+    document.getElementById("galleryLightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const lightboxClose =
+    document.getElementById("lightboxClose");
+
+const lightboxPrev =
+    document.getElementById("lightboxPrev");
+
+const lightboxNext =
+    document.getElementById("lightboxNext");
+
+const lightboxCounter =
+    document.getElementById("lightboxCounter");
+
+
+let currentImage = 0;
+
+
+/* GET ALL IMAGES */
+
+const galleryImages = [];
+
+galleryItems.forEach((item, index) => {
+
+    const image =
+        item.querySelector("img");
+
+    galleryImages.push({
+        src: image.src,
+        alt: image.alt
+    });
+
+
+    /* CLICK IMAGE */
+
+    item.addEventListener("click", () => {
+
+        currentImage = index;
+
+        openLightbox();
+
+    });
+
+});
+
+
+/* OPEN LIGHTBOX */
+
+function openLightbox() {
+
+    const image =
+        galleryImages[currentImage];
+
+    lightboxImage.src = image.src;
+
+    lightboxImage.alt = image.alt;
+
+    lightboxCounter.textContent =
+        `${String(currentImage + 1).padStart(2, "0")} / ${String(galleryImages.length).padStart(2, "0")}`;
+
+    galleryLightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/* CLOSE LIGHTBOX */
+
+function closeLightbox() {
+
+    galleryLightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* NEXT IMAGE */
+
+function nextImage() {
+
+    currentImage++;
+
+    if (currentImage >= galleryImages.length) {
+
+        currentImage = 0;
+
+    }
+
+    openLightbox();
+
+}
+
+
+/* PREVIOUS IMAGE */
+
+function previousImage() {
+
+    currentImage--;
+
+    if (currentImage < 0) {
+
+        currentImage = galleryImages.length - 1;
+
+    }
+
+    openLightbox();
+
+}
+
+
+/* BUTTONS */
+
+lightboxClose.addEventListener(
+    "click",
+    closeLightbox
+);
+
+lightboxNext.addEventListener(
+    "click",
+    nextImage
+);
+
+lightboxPrev.addEventListener(
+    "click",
+    previousImage
+);
+
+
+/* CLICK OUTSIDE IMAGE */
+
+galleryLightbox.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target === galleryLightbox
+        ) {
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* KEYBOARD CONTROLS */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            !galleryLightbox.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            nextImage();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousImage();
+
+        }
+
+    }
+);
+
+/* =========================================
+   NETLIFY BOOKING FORM
+========================================= */
+
+const bookingForm = document.getElementById("bookingForm");
+const bookingStatus = document.getElementById("bookingStatus");
+
+if (bookingForm) {
+
+    bookingForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const submitButton =
+            bookingForm.querySelector(".booking-submit");
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = "SENDING REQUEST...";
+
+        const formData = new FormData(bookingForm);
+
+        try {
+
+            const response = await fetch("/", {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded"
+                },
+                body:
+                    new URLSearchParams(formData).toString()
+            });
+
+            if (!response.ok) {
+                throw new Error("Form submission failed");
+            }
+
+            bookingStatus.textContent =
+                "REQUEST SENT — THANK YOU. WE'LL BE IN TOUCH.";
+
+            bookingStatus.style.color = "#c9a227";
+
+            bookingForm.reset();
+
+            submitButton.disabled = false;
+
+            submitButton.innerHTML =
+                `SEND BOOKING REQUEST <span>↗</span>`;
+
+        } catch (error) {
+
+            console.error("Booking form error:", error);
+
+            bookingStatus.textContent =
+                "SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
+
+            bookingStatus.style.color = "#f5f2ea";
+
+            submitButton.disabled = false;
+
+            submitButton.innerHTML =
+                `SEND BOOKING REQUEST <span>↗</span>`;
+        }
+
+    });
+
+}
+
+/* =========================================
+   SMOOTH SCROLLING
+========================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function (event) {
+
+        const targetId =
+            this.getAttribute("href");
+
+        if (
+            !targetId ||
+            targetId === "#"
+        ) {
+            return;
+        }
+
+        const target =
+            document.querySelector(targetId);
+
+        if (!target) {
+            return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+});
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", function () {
+
+        navLinks.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+
+    });
+
+
+    /* CLOSE MENU WHEN LINK IS CLICKED */
+
+    const navItems = navLinks.querySelectorAll("a");
+
+    navItems.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            navLinks.classList.remove("active");
+            menuToggle.classList.remove("active");
+
+        });
+
+    });
+
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        ".section-label, " +
+        ".about-content, " +
+        ".about-image, " +
+        ".member-card, " +
+        ".music-player, " +
+        ".reel-card, " +
+        ".gallery-item, " +
+        ".event-card, " +
+        ".booking-info, " +
+        ".booking-form-wrapper, " +
+        ".social-link"
+    );
+
+
+revealElements.forEach(element => {
+
+    element.classList.add(
+        "scroll-reveal"
+    );
+
+});
+
+
+const revealObserver =
+    new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "revealed"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================
+   NAVBAR SCROLL
+========================================= */
+
+function updateNavbar() {
+
+    if (!navbar) {
+        return;
+    }
+
+    if (window.scrollY > 50) {
+
+        navbar.classList.add(
+            "scrolled"
+        );
+
+    } else {
+
+        navbar.classList.remove(
+            "scrolled"
+        );
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateNavbar
+);
+
+updateNavbar();
+
+
+
+/* =========================================
+   EVENT DATE
+========================================= */
+
+const eventDate =
+    document.getElementById("eventDate");
+
+
+if (eventDate) {
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    eventDate.min = today;
+
+}
+
+
+/* =========================================
+   GLOBAL ESCAPE
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        if (
+            menuToggle &&
+            navLinks
+        ) {
+
+            menuToggle.classList.remove(
+                "active"
+            );
+
+            navLinks.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
