@@ -582,9 +582,8 @@ document.addEventListener(
 
     }
 );
-
 /* =========================================
-   NETLIFY BOOKING FORM
+   FORMSPREE BOOKING FORM
 ========================================= */
 
 const bookingForm = document.getElementById("bookingForm");
@@ -600,51 +599,67 @@ if (bookingForm) {
             bookingForm.querySelector(".booking-submit");
 
         submitButton.disabled = true;
-        submitButton.innerHTML = "SENDING REQUEST...";
-
-        const formData = new FormData(bookingForm);
+        submitButton.textContent = "SENDING REQUEST...";
 
         try {
 
-            const response = await fetch("/", {
-                method: "POST",
-                headers: {
-                    "Content-Type":
-                        "application/x-www-form-urlencoded"
-                },
-                body:
-                    new URLSearchParams(formData).toString()
-            });
+            const response = await fetch(
+                "https://formspree.io/f/xreybydr",
+                {
+                    method: "POST",
+                    body: new FormData(bookingForm),
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            );
 
-            if (!response.ok) {
-                throw new Error("Form submission failed");
+            if (response.ok) {
+
+                // Show success message
+                bookingStatus.innerHTML =
+                    "✓ BOOKING REQUEST SENT SUCCESSFULLY.";
+
+                bookingStatus.style.display = "block";
+                bookingStatus.style.color = "#c9a227";
+
+                // Clear form
+                bookingForm.reset();
+
+                // Restore button
+                submitButton.innerHTML =
+                    'SEND BOOKING REQUEST <span>↗</span>';
+
+                submitButton.disabled = false;
+
+            } else {
+
+                bookingStatus.innerHTML =
+                    "✕ SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
+
+                bookingStatus.style.display = "block";
+                bookingStatus.style.color = "#f5f2ea";
+
+                submitButton.innerHTML =
+                    'SEND BOOKING REQUEST <span>↗</span>';
+
+                submitButton.disabled = false;
             }
-
-            bookingStatus.textContent =
-                "REQUEST SENT — THANK YOU. WE'LL BE IN TOUCH.";
-
-            bookingStatus.style.color = "#c9a227";
-
-            bookingForm.reset();
-
-            submitButton.disabled = false;
-
-            submitButton.innerHTML =
-                `SEND BOOKING REQUEST <span>↗</span>`;
 
         } catch (error) {
 
-            console.error("Booking form error:", error);
+            console.error("Formspree error:", error);
 
-            bookingStatus.textContent =
-                "SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
+            bookingStatus.innerHTML =
+                "✕ SOMETHING WENT WRONG. PLEASE TRY AGAIN.";
 
+            bookingStatus.style.display = "block";
             bookingStatus.style.color = "#f5f2ea";
 
-            submitButton.disabled = false;
-
             submitButton.innerHTML =
-                `SEND BOOKING REQUEST <span>↗</span>`;
+                'SEND BOOKING REQUEST <span>↗</span>';
+
+            submitButton.disabled = false;
         }
 
     });

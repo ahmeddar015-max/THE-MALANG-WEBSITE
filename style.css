@@ -5900,12 +5900,12 @@ img {
 
 }
 
-
+/* 
 /* =========================================
    NETLIFY FORM SPAM PROTECTION
 ========================================= */
 
-.hidden-honeypot {
+/* .hidden-honeypot {
     position: absolute;
 
     width: 1px;
@@ -5921,4 +5921,12 @@ img {
     white-space: nowrap;
 
     border: 0;
+}  */
+
+.booking-status {
+    display: none;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
