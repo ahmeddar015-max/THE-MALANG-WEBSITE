@@ -604,7 +604,7 @@ if (bookingForm) {
         try {
 
             const response = await fetch(
-                "https://formspree.io/f/xreybydr",
+                "https://formspree.io/f/mrpbejga",
                 {
                     method: "POST",
                     body: new FormData(bookingForm),
