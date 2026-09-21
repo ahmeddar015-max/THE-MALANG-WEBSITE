@@ -3362,10 +3362,215 @@ a {
 
 }
 
+
+/* =========================================
+   CLIENT REVIEWS
+========================================= */
+
+.reviews-section {
+    padding: 120px 8%;
+    background: #080808;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.reviews-section .section-header {
+    max-width: 760px;
+    margin-bottom: 70px;
+}
+
+
+.reviews-section .section-eyebrow {
+    display: block;
+    margin-bottom: 18px;
+
+    color: #c9a227;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+
+.reviews-section h2 {
+    margin: 0;
+
+    color: #f5f2ea;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(50px, 7vw, 100px);
+
+    line-height: 0.95;
+    letter-spacing: 2px;
+}
+
+
+.reviews-section h2 span {
+    color: #c9a227;
+}
+
+
+.reviews-section .section-header p {
+    max-width: 600px;
+    margin-top: 25px;
+
+    color: rgba(245, 242, 234, 0.6);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* REVIEW GRID */
+
+.reviews-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* REVIEW CARD */
+
+.review-card {
+    position: relative;
+
+    min-height: 330px;
+
+    padding: 38px;
+
+    background: #0d0d0d;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+
+.review-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(201, 162, 39, 0.55);
+
+    background: #101010;
+}
+
+
+/* STARS */
+
+.review-stars {
+    color: #c9a227;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+}
+
+
+/* QUOTE */
+
+.review-quote {
+    margin-top: 25px;
+
+    color: #c9a227;
+
+    font-family: Georgia, serif;
+
+    font-size: 55px;
+
+    line-height: 0.5;
+}
+
+
+/* REVIEW TEXT */
+
+.review-text {
+    margin-top: 20px;
+
+    color: rgba(245, 242, 234, 0.72);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* CLIENT */
+
+.review-client {
+    position: absolute;
+
+    left: 38px;
+    bottom: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.review-client strong {
+    color: #f5f2ea;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+.review-client span {
+    color: #c9a227;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   REVIEWS — MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .reviews-section {
+        padding: 90px 6%;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .review-card {
+        min-height: 300px;
+        padding: 30px;
+    }
+
+    .review-client {
+        left: 30px;
+        bottom: 30px;
+    }
+
+}
+
 /* =========================================
    EVENTS
 ========================================= */
-
+/* 
 .events {
     position: relative;
 
@@ -3450,23 +3655,23 @@ a {
     line-height: 1.9;
 
     color: rgba(245, 242, 234, 0.5);
-}
+} */
 
 
 /* =========================================
    EVENT LIST
 ========================================= */
-
+/* 
 .events-list {
     border-top: 1px solid
         rgba(245, 242, 234, 0.12);
-}
+} */
 
 
 /* =========================================
    EVENT CARD
 ========================================= */
-
+/* 
 .event-card {
     display: grid;
 
@@ -3492,13 +3697,13 @@ a {
 
     background:
         rgba(201, 162, 39, 0.025);
-}
+} */
 
 
 /* =========================================
    DATE
 ========================================= */
-
+/* 
 .event-date {
     display: flex;
 
@@ -3535,13 +3740,13 @@ a {
     letter-spacing: 2px;
 
     color: rgba(245, 242, 234, 0.4);
-}
+} */
 
 
 /* =========================================
    EVENT INFO
 ========================================= */
-
+/* 
 .event-type {
     display: block;
 
@@ -3580,13 +3785,13 @@ a {
     color: #c9a227;
 
     margin-right: 5px;
-}
+} */
 
 
 /* =========================================
    EVENT BUTTON
 ========================================= */
-
+/* 
 .event-action {
     display: flex;
 
@@ -3632,13 +3837,13 @@ a {
     box-shadow:
         0 10px 30px
         rgba(201, 162, 39, 0.12);
-}
+} */
 
 
 /* =========================================
    BOTTOM CTA
 ========================================= */
-
+/* 
 .events-bottom {
     display: flex;
 
@@ -3694,7 +3899,7 @@ a {
 
     background:
         rgba(245, 242, 234, 0.1);
-}
+} */
 
 
 /* =========================================
