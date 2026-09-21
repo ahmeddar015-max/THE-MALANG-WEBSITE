@@ -2008,7 +2008,6 @@ a {
         0 10px 30px rgba(201, 162, 39, 0.2);
 }
 
-
 /* =========================================
    VOLUME
 ========================================= */
@@ -2019,29 +2018,121 @@ a {
 
     align-items: center;
 
+    justify-content: center;
+
     gap: 12px;
 
-    max-width: 200px;
+    width: 100%;
+
+    max-width: 240px;
 
     margin: auto;
 }
 
 
-.volume-control span {
+/* MUTE BUTTON */
 
-    font-size: 12px;
+.mute-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 38px;
+
+    height: 38px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: 1px solid rgba(245, 242, 234, 0.15);
+
+    border-radius: 50%;
+
+    color: #f5f2ea;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease,
+        background 0.3s ease;
 }
 
+
+.mute-btn:hover {
+
+    border-color: #c9a227;
+
+    color: #c9a227;
+
+    background: rgba(201, 162, 39, 0.08);
+}
+
+
+/* VOLUME SLIDER */
 
 .volume-control input {
 
     width: 120px;
 
+    height: 4px;
+
     accent-color: #c9a227;
 
     cursor: pointer;
+
+    flex: 1;
 }
 
+
+/* =========================================
+   MOBILE VOLUME
+========================================= */
+
+@media (max-width: 600px) {
+
+    .volume-control {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        gap: 10px;
+
+        margin-top: 5px;
+    }
+
+
+    .mute-btn {
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+
+    .volume-control input {
+
+        width: auto;
+
+        flex: 1;
+
+        min-width: 0;
+
+        height: 30px;
+    }
+
+}
 
 /* =========================================
    SONG LIST
@@ -3362,7 +3453,6 @@ a {
 
 }
 
-
 /* =========================================
    CLIENT REVIEWS
 ========================================= */
@@ -3373,6 +3463,8 @@ a {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+
+/* HEADER */
 
 .reviews-section .section-header {
     max-width: 760px;
@@ -3400,9 +3492,11 @@ a {
     color: #f5f2ea;
 
     font-family: "Bebas Neue", sans-serif;
+
     font-size: clamp(50px, 7vw, 100px);
 
     line-height: 0.95;
+
     letter-spacing: 2px;
 }
 
@@ -3414,16 +3508,20 @@ a {
 
 .reviews-section .section-header p {
     max-width: 600px;
+
     margin-top: 25px;
 
     color: rgba(245, 242, 234, 0.6);
 
     font-size: 15px;
+
     line-height: 1.7;
 }
 
 
-/* REVIEW GRID */
+/* =========================================
+   REVIEW GRID
+========================================= */
 
 .reviews-grid {
     display: grid;
@@ -3434,12 +3532,14 @@ a {
 }
 
 
-/* REVIEW CARD */
+/* =========================================
+   REVIEW CARD
+========================================= */
 
 .review-card {
     position: relative;
 
-    min-height: 330px;
+    min-height: 360px;
 
     padding: 38px;
 
@@ -3494,6 +3594,8 @@ a {
 .review-text {
     margin-top: 20px;
 
+    padding-bottom: 75px;
+
     color: rgba(245, 242, 234, 0.72);
 
     font-size: 15px;
@@ -3510,6 +3612,7 @@ a {
     position: absolute;
 
     left: 38px;
+
     bottom: 35px;
 
     display: flex;
@@ -3541,7 +3644,99 @@ a {
 
 
 /* =========================================
-   REVIEWS — MOBILE
+   MORE REVIEWS
+========================================= */
+
+.more-reviews {
+    display: none;
+
+    grid-column: 1 / -1;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+
+.more-reviews.show {
+    display: grid;
+}
+
+
+/* =========================================
+   VIEW MORE BUTTON
+========================================= */
+
+.reviews-more-wrapper {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 55px;
+}
+
+
+.reviews-more-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px 28px;
+
+    background: transparent;
+
+    color: #f5f2ea;
+
+    border: 1px solid rgba(201, 162, 39, 0.6);
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.reviews-more-btn span {
+    color: #c9a227;
+
+    font-size: 18px;
+
+    transition: transform 0.3s ease;
+}
+
+
+.reviews-more-btn:hover {
+    background: #c9a227;
+
+    color: #080808;
+
+    border-color: #c9a227;
+}
+
+
+.reviews-more-btn:hover span {
+    color: #080808;
+
+    transform: translate(3px, -3px);
+}
+
+
+/* =========================================
+   MOBILE
 ========================================= */
 
 @media (max-width: 900px) {
@@ -3550,19 +3745,49 @@ a {
         padding: 90px 6%;
     }
 
+
+    .reviews-section .section-header {
+        margin-bottom: 50px;
+    }
+
+
     .reviews-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    .more-reviews {
+        grid-template-columns: 1fr;
+
+        margin-top: 0;
+
         gap: 20px;
     }
 
+
     .review-card {
-        min-height: 300px;
+        min-height: 320px;
+
         padding: 30px;
     }
 
+
     .review-client {
         left: 30px;
+
         bottom: 30px;
+    }
+
+
+    .reviews-more-wrapper {
+        margin-top: 40px;
+    }
+
+
+    .reviews-more-btn {
+        width: 100%;
+
+        justify-content: center;
     }
 
 }
@@ -3905,12 +4130,12 @@ a {
 /* =========================================
    TABLET
 ========================================= */
-
-@media (max-width: 900px) {
+/* 
+@media (max-width: 900px) 
 
     .events {
-        padding: 110px 7%;
-    }
+        padding: 110px 7%; */
+    
 
     .events-header {
         flex-direction: column;
@@ -3934,8 +4159,6 @@ a {
     .event-info h3 {
         font-size: 30px;
     }
-
-}
 
 
 /* =========================================

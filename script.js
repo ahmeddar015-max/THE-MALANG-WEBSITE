@@ -54,6 +54,44 @@ const songs = [
         artist: "SUHAIL YOUSUF",
         file: "music/song3.mp3",
         cover: "images/musiccover3.jpeg"
+    },
+
+
+
+    {
+        title: "SONG TITLE 04",
+        artist: "THE MALANG",
+        file: "music/song5.mp3",
+        cover: "images/musiccover5.jpeg"
+    },
+
+    {
+        title: "SONG TITLE 05",
+        artist: "THE MALANG",
+        file: "music/song6.mp3",
+        cover: "images/musiccover6.jpeg"
+    },
+
+    {
+        title: "SONG TITLE 06",
+        artist: "THE MALANG",
+        file: "music/song7.mp3",
+        cover: "images/musiccover7.jpeg"
+    },
+
+    {
+        title: "SONG TITLE 07",
+        artist: "THE MALANG",
+        file: "music/song8.mp3",
+        cover: "images/musiccover8.jpeg"
+    },
+
+
+    {
+        title: "SONG TITLE 08",
+        artist: "THE MALANG",
+        file: "music/song8.mp3",
+        cover: "images/musiccover8.jpeg"
     }
 
 ];
@@ -231,20 +269,25 @@ prevBtn.addEventListener("click", () => {
 // =========================================
 // SONG LIST
 // =========================================
-
+// SONG LIST
 songItems.forEach(item => {
-
     item.addEventListener("click", () => {
 
-        const index =
-            parseInt(item.dataset.index);
+        const index = parseInt(item.dataset.index);
 
+        // Load selected song
         loadSong(index);
 
+        // Play selected song
         playSong();
 
-    });
+        // Smoothly scroll to the main music player
+        document.querySelector(".music-player").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
+    });
 });
 
 
@@ -307,13 +350,74 @@ progressContainer.addEventListener("click", (event) => {
 // VOLUME
 // =========================================
 
+// =========================================
+// VOLUME + MUTE
+// =========================================
+
+const muteBtn =
+    document.getElementById("muteBtn");
+
+let previousVolume = 1;
+
+
+// VOLUME SLIDER
+
 volumeControl.addEventListener("input", () => {
 
-    audio.volume =
-        volumeControl.value;
+    const volume =
+        parseFloat(volumeControl.value);
+
+    audio.volume = volume;
+
+    if (volume === 0) {
+
+        audio.muted = true;
+
+        muteBtn.textContent = "🔇";
+
+    } else {
+
+        audio.muted = false;
+
+        previousVolume = volume;
+
+        muteBtn.textContent = "🔊";
+
+    }
 
 });
 
+
+// MUTE / UNMUTE
+
+muteBtn.addEventListener("click", () => {
+
+    if (audio.muted || audio.volume === 0) {
+
+        audio.muted = false;
+
+        audio.volume =
+            previousVolume > 0
+                ? previousVolume
+                : 1;
+
+        volumeControl.value =
+            audio.volume;
+
+        muteBtn.textContent = "🔊";
+
+    } else {
+
+        previousVolume =
+            audio.volume;
+
+        audio.muted = true;
+
+        muteBtn.textContent = "🔇";
+
+    }
+
+});
 
 // =========================================
 // SONG ENDED
@@ -890,3 +994,43 @@ document.addEventListener(
 
     }
 );
+
+
+
+
+/* =========================================
+   CLIENT REVIEWS
+========================================= */
+
+const reviewsMoreBtn =
+    document.getElementById("reviewsMoreBtn");
+
+const moreReviews =
+    document.getElementById("moreReviews");
+
+if (reviewsMoreBtn && moreReviews) {
+
+    reviewsMoreBtn.addEventListener("click", function () {
+
+        const isOpen =
+            moreReviews.classList.contains("show");
+
+        if (!isOpen) {
+
+            moreReviews.classList.add("show");
+
+            reviewsMoreBtn.innerHTML =
+                `SHOW LESS <span>↑</span>`;
+
+        } else {
+
+            moreReviews.classList.remove("show");
+
+            reviewsMoreBtn.innerHTML =
+                `VIEW MORE REVIEWS <span>↗</span>`;
+
+        }
+
+    });
+
+}
