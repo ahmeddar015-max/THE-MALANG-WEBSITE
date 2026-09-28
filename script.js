@@ -1034,3 +1034,75 @@ if (reviewsMoreBtn && moreReviews) {
     });
 
 }
+
+
+
+// =========================================
+// WHATSAPP CHOOSER
+// =========================================
+
+const whatsappChooser =
+    document.getElementById("whatsappChooser");
+
+const whatsappModal =
+    document.getElementById("whatsappModal");
+
+const whatsappModalClose =
+    document.getElementById("whatsappModalClose");
+
+
+if (whatsappChooser && whatsappModal) {
+
+    // OPEN POPUP
+    whatsappChooser.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        whatsappModal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+
+    // CLOSE POPUP
+    whatsappModalClose.addEventListener("click", function () {
+
+        whatsappModal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    });
+
+
+    // CLOSE WHEN CLICKING OUTSIDE
+    whatsappModal.addEventListener("click", function (event) {
+
+        if (event.target === whatsappModal) {
+
+            whatsappModal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+
+    // CLOSE WITH ESCAPE
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            whatsappModal.classList.contains("active")
+        ) {
+
+            whatsappModal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    });
+
+}

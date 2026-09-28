@@ -4709,46 +4709,55 @@ a {
 /* =========================================
    CONTACT
 ========================================= */
+/* =========================================
+   CONTACT ICON HOVER
+========================================= */
 
-.contact {
-    position: relative;
-
-    background: #0d0d0d;
-
-    padding: 160px 8%;
-
-    overflow: hidden;
+.contact-item {
+    transition: none;
 }
 
-.contact::before {
-    content: "CONNECT";
+/* ICON */
 
-    position: absolute;
-
-    left: -100px;
-    top: 80px;
-
-    font-family: "Bebas Neue", sans-serif;
-
-    font-size: 190px;
-
-    letter-spacing: 8px;
-
-    color: rgba(255, 255, 255, 0.015);
-
-    pointer-events: none;
+.contact-item .contact-icon {
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.contact-container {
-    max-width: 1400px;
+/* HOVER */
 
-    margin: auto;
-
-    position: relative;
-
-    z-index: 2;
+.contact-item:hover .contact-icon {
+    transform: scale(1.15);
+    background: #c9a227;
+    border-color: #c9a227;
+    color: #080808;
 }
 
+/* TEXT */
+
+.contact-item .contact-details strong {
+    transition: color 0.3s ease;
+}
+
+.contact-item:hover .contact-details strong {
+    color: #c9a227;
+}
+
+/* ARROW */
+
+.contact-item .contact-arrow {
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.contact-item:hover .contact-arrow {
+    color: #c9a227;
+    transform: translate(3px, -3px);
+}
 
 /* =========================================
    HEADER
@@ -6358,3 +6367,350 @@ img {
     font-weight: 600;
     letter-spacing: 1px;
 }
+
+
+
+
+
+/* =========================================
+   WHATSAPP CHOOSER
+========================================= */
+
+.whatsapp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0, 0, 0, 0.82);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+
+    backdrop-filter: blur(8px);
+}
+
+.whatsapp-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.whatsapp-modal-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: 45px;
+
+    background: #0d0d0d;
+
+    border: 1px solid rgba(201, 162, 39, 0.35);
+
+    transform: translateY(25px);
+
+    transition: transform 0.35s ease;
+}
+
+.whatsapp-modal.active .whatsapp-modal-box {
+    transform: translateY(0);
+}
+
+.whatsapp-modal-close {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(245, 242, 234, 0.15);
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #f5f2ea;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.whatsapp-modal-close:hover {
+    color: #c9a227;
+    border-color: #c9a227;
+}
+
+.whatsapp-modal-label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #c9a227;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.whatsapp-modal-box h3 {
+    margin: 0;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 48px;
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    color: #f5f2ea;
+}
+
+.whatsapp-modal-box p {
+    margin: 12px 0 30px;
+
+    color: rgba(245, 242, 234, 0.5);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* CHOICE */
+
+.whatsapp-choice {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    margin-top: 12px;
+
+    border: 1px solid rgba(245, 242, 234, 0.1);
+
+    background: #111;
+
+    color: #f5f2ea;
+
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.whatsapp-choice:hover {
+    border-color: #c9a227;
+
+    background: #151515;
+
+    transform: translateX(5px);
+}
+
+.whatsapp-choice-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid #c9a227;
+
+    border-radius: 50%;
+
+    color: #c9a227;
+
+    font-size: 18px;
+}
+
+.whatsapp-choice > span:nth-child(2) {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1;
+}
+
+.whatsapp-choice small {
+    color: #c9a227;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.whatsapp-choice strong {
+    color: #f5f2ea;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+}
+
+.whatsapp-choice b {
+    color: rgba(245, 242, 234, 0.5);
+
+    font-size: 18px;
+
+    font-weight: 400;
+
+    transition: 0.3s ease;
+}
+
+.whatsapp-choice:hover b {
+    color: #c9a227;
+
+    transform: translate(3px, -3px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .whatsapp-modal {
+        padding: 20px;
+    }
+
+    .whatsapp-modal-box {
+        padding: 35px 25px;
+    }
+
+    .whatsapp-modal-box h3 {
+        font-size: 40px;
+    }
+
+    .whatsapp-choice {
+        padding: 16px;
+        gap: 14px;
+    }
+
+}
+
+
+
+/* =========================================
+   CONTACT ITEMS FIX
+========================================= */
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(245, 242, 234, 0.12);
+    text-decoration: none;
+    color: #f5f2ea;
+    gap: 35px;
+}
+
+.contact-item .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+}
+
+.contact-item .contact-details small {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: rgba(245, 242, 234, 0.35);
+}
+
+.contact-item .contact-details strong {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #f5f2ea;
+}
+
+.contact-item .contact-arrow {
+    margin-left: auto;
+    color: rgba(245, 242, 234, 0.45);
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.contact-item:hover .contact-arrow {
+    color: #c9a227;
+    transform: translate(4px, -4px);
+}
+
+.contact-item:hover .contact-details strong {
+    color: #c9a227;
+}
+
+@media (max-width: 600px) {
+
+    .contact-item {
+        gap: 20px;
+        padding: 22px 0;
+    }
+
+    .contact-item .contact-details strong {
+        font-size: 11px;
+    }
+
+}
+
+/* CONTACT HOVER ANIMATION */
+
+.contact-item {
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(8px);
+}
+
+.contact-item:hover .contact-arrow {
+    color: #c9a227;
+    transform: translate(4px, -4px);
+}
+
+
+.contact-item {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(8px);
+}
+
+.contact-item .contact-arrow {
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.contact-item:hover .contact-arrow {
+    color: #c9a227;
+    transform: translate(4px, -4px);
+}
+
