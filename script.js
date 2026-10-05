@@ -46,7 +46,7 @@ const songs = [
         title: "HALKA HALKA SUROOR",
         artist: "THE MALANG",
         file: "music/song2.mp3",
-        cover: "images/musiccover2.jpeg"
+        cover: "images/musiccover2.png"
     },
 
     {
@@ -59,10 +59,10 @@ const songs = [
 
 
     {
-        title: "SONG TITLE 04",
+        title: "DIL PE ZAKHAM",
         artist: "THE MALANG",
-        file: "music/song5.mp3",
-        cover: "images/musiccover5.jpeg"
+        file: "music/song4.mp3",
+        cover: "images/musiccover4.png"
     },
 
     {
@@ -1105,4 +1105,41 @@ if (whatsappChooser && whatsappModal) {
 
     });
 
+}
+
+/* ================= GALLERY SWIPE ================= */
+
+const lightbox = document.getElementById("galleryLightbox");
+const lightboxContent = document.querySelector(".lightbox-content");
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightboxContent.addEventListener("touchstart", function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightboxContent.addEventListener("touchend", function (e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGallerySwipe();
+}, { passive: true });
+
+function handleGallerySwipe() {
+
+    const swipeDistance = touchEndX - touchStartX;
+
+    // Ignore small movements
+    if (Math.abs(swipeDistance) < 50) {
+        return;
+    }
+
+    // Swipe LEFT → NEXT IMAGE
+    if (swipeDistance < 0) {
+        document.getElementById("lightboxNext").click();
+    }
+
+    // Swipe RIGHT → PREVIOUS IMAGE
+    if (swipeDistance > 0) {
+        document.getElementById("lightboxPrev").click();
+    }
 }

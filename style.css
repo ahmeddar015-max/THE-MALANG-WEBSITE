@@ -6746,3 +6746,24 @@ img {
 .music-book-link:hover span {
     transform: translate(3px, -3px);
 }
+
+
+.reel-tag + h3 small {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.55em;
+}
+
+
+/* ================= MOBILE GALLERY SWIPE ================= */
+
+.lightbox-content {
+    touch-action: pan-y;
+    user-select: none;
+}
+
+#lightboxImage {
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+}
