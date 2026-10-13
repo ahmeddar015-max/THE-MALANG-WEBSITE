@@ -6958,3 +6958,57 @@ img {
         color: #f5f2ea;
     }
 }
+
+
+/* FLOATING WHATSAPP BOOKING BUTTON */
+
+.floating-whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 14px 18px;
+    background: #111;
+    color: #f5f2ea;
+    border: 1px solid rgba(245, 242, 234, 0.25);
+    border-radius: 50px;
+
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.floating-whatsapp i {
+    font-size: 21px;
+}
+
+.floating-whatsapp:hover {
+    background: #1c1c1c;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp {
+        right: 16px;
+        bottom: 16px;
+        padding: 13px 16px;
+        gap: 8px;
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .floating-whatsapp i {
+        font-size: 20px;
+    }
+}
+
