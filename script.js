@@ -66,10 +66,10 @@ const songs = [
     },
 
     {
-        title: "SONG TITLE 05",
+        title: "ALFAAZ",
         artist: "THE MALANG",
-        file: "music/song6.mp3",
-        cover: "images/musiccover6.jpeg"
+        file: "music/song5.mp3",
+        cover: "images/musiccover5.webp"
     },
 
     {
