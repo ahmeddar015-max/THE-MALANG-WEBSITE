@@ -6997,18 +6997,20 @@ img {
     transform: translateY(-3px);
 }
 
+
 @media (max-width: 768px) {
     .floating-whatsapp {
-        right: 16px;
-        bottom: 16px;
-        padding: 13px 16px;
-        gap: 8px;
-        font-size: 9px;
-        letter-spacing: 1px;
+        right: 12px;
+        bottom: 12px;
+        padding: 10px 12px;
+        gap: 7px;
+        font-size: 8px;
+        letter-spacing: 0.8px;
     }
 
     .floating-whatsapp i {
-        font-size: 20px;
+        font-size: 17px;
     }
 }
+
 

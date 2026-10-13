@@ -46,7 +46,7 @@ const songs = [
         title: "HALKA HALKA SUROOR",
         artist: "THE MALANG",
         file: "music/song2.mp3",
-        cover: "images/musiccover2.png"
+        cover: "images/musiccover2.webp"
     },
 
     {
@@ -62,7 +62,7 @@ const songs = [
         title: "DIL PE ZAKHAM",
         artist: "THE MALANG",
         file: "music/song4.mp3",
-        cover: "images/musiccover4.png"
+        cover: "images/musiccover4.webp"
     },
 
     {
