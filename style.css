@@ -6907,3 +6907,54 @@ img {
         max-width: 240px;
     }
 }
+
+
+/* BOOK US NAVIGATION BUTTON */
+
+.nav-book-btn {
+    display: inline-block;
+    color: #080808;
+    background: #c9a227;
+    padding: 12px 22px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.nav-book-btn:hover {
+    background: #f5d675;
+}
+
+@media (max-width: 768px) {
+    .nav-book-btn {
+        margin-top: 12px;
+        width: fit-content;
+    }
+}
+
+
+/* MOBILE BOOK US - NO YELLOW BACKGROUND */
+
+@media (max-width: 768px) {
+    .nav-book-btn {
+        background: transparent;
+        color: #f5f2ea;
+        padding: 0;
+        margin-top: 0;
+        width: auto;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-align: left;
+        border: none;
+    }
+
+    .nav-book-btn:hover,
+    .nav-book-btn:focus {
+        background: transparent;
+        color: #f5f2ea;
+    }
+}
