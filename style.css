@@ -7135,28 +7135,82 @@ img {
     transform: translateY(-1px);
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
 @media (max-width: 768px) {
 
+    .google-trust-bar {
+        width: 100%;
+        overflow: hidden;
+    }
+
     .google-trust-content {
-        min-height: 44px;
-        padding: 0 12px;
-        gap: 9px;
+        min-height: 58px;
+        padding: 7px 10px;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        gap: 5px 9px;
+
         font-size: 10px;
-        white-space: nowrap;
+        line-height: 1.2;
+    }
+
+    /* FIRST LINE */
+    .google-rating {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+    }
+
+    .google-stars {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    .google-rating strong {
+        font-size: 13px;
+    }
+
+    .google-text {
+        display: inline;
+        font-size: 10px;
+    }
+
+    /* SECOND LINE */
+    .google-divider {
+        display: none;
+    }
+
+    .google-reviews {
+        font-size: 9px;
+        color: #a9a9a9;
+    }
+
+    .google-review-link {
+        font-size: 9px;
+        gap: 4px;
+    }
+
+    .google-review-link i {
+        font-size: 7px;
+    }
+}
+
+
+/* VERY SMALL PHONES */
+@media (max-width: 380px) {
+
+    .google-trust-content {
+        min-height: 56px;
+        padding: 6px 8px;
+        gap: 4px 7px;
     }
 
     .google-stars {
         font-size: 11px;
-        letter-spacing: 1px;
-    }
-
-    .google-rating {
-        gap: 5px;
     }
 
     .google-rating strong {
@@ -7164,22 +7218,11 @@ img {
     }
 
     .google-text {
-        display: none;
+        font-size: 9px;
     }
 
-    .google-divider {
-        height: 15px;
-    }
-
-    .google-reviews {
-        font-size: 10px;
-    }
-
+    .google-reviews,
     .google-review-link {
-        font-size: 10px;
-    }
-
-    .google-review-link i {
         font-size: 8px;
     }
 }
