@@ -7012,5 +7012,44 @@ img {
         font-size: 17px;
     }
 }
+/* SHOW MORE MUSIC */
 
+.extra-music {
+    display: none;
+}
+
+.extra-music.show {
+    display: flex;
+}
+
+.show-more-music {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px auto 0;
+    padding: 13px 28px;
+    background: transparent;
+    border: 1px solid #c9a227;
+    color: #c9a227;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.show-more-music:hover {
+    background: #c9a227;
+    color: #080808;
+}
+
+.show-more-music i {
+    transition: transform 0.3s ease;
+}
+
+.show-more-music.active i {
+    transform: rotate(180deg);
+}
 

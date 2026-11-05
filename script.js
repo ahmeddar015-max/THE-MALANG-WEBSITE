@@ -73,25 +73,25 @@ const songs = [
     },
 
     {
-        title: "SONG TITLE 06",
+        title: "SANSU KI MALA",
+        artist: "THE MALANG",
+        file: "music/song6.mp3",
+        cover: "images/musiccover6.png"
+    },
+
+    {
+        title: "DIL LAGI",
         artist: "THE MALANG",
         file: "music/song7.mp3",
-        cover: "images/musiccover7.jpeg"
-    },
-
-    {
-        title: "SONG TITLE 07",
-        artist: "THE MALANG",
-        file: "music/song8.mp3",
-        cover: "images/musiccover8.jpeg"
+        cover: "images/musiccover7.png"
     },
 
 
     {
-        title: "SONG TITLE 08",
+        title: "HAQEEQAT",
         artist: "THE MALANG",
         file: "music/song8.mp3",
-        cover: "images/musiccover8.jpeg"
+        cover: "images/musiccover8.png"
     }
 
 ];
@@ -1142,4 +1142,39 @@ function handleGallerySwipe() {
     if (swipeDistance > 0) {
         document.getElementById("lightboxPrev").click();
     }
+}
+/* =========================================
+   SHOW MORE MUSIC
+========================================= */
+
+const showMoreMusic = document.getElementById("showMoreMusic");
+const extraMusic = document.querySelectorAll(".extra-music");
+
+if (showMoreMusic && extraMusic.length) {
+
+    showMoreMusic.addEventListener("click", function () {
+
+        const isExpanded =
+            showMoreMusic.classList.contains("active");
+
+        extraMusic.forEach(song => {
+            song.classList.toggle("show", !isExpanded);
+        });
+
+        showMoreMusic.classList.toggle("active");
+
+        if (isExpanded) {
+
+            showMoreMusic.innerHTML =
+                `SHOW MORE MUSIC <i class="fa-solid fa-chevron-down"></i>`;
+
+        } else {
+
+            showMoreMusic.innerHTML =
+                `SHOW LESS <i class="fa-solid fa-chevron-down"></i>`;
+
+        }
+
+    });
+
 }
