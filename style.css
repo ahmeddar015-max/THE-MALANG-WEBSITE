@@ -7053,3 +7053,133 @@ img {
     transform: rotate(180deg);
 }
 
+/* =========================================
+   GOOGLE TRUST BAR
+========================================= */
+
+.google-trust-bar {
+    width: 100%;
+    background: #0b0b0b;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.18);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
+    z-index: 20;
+}
+
+.google-trust-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 46px;
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+}
+
+.google-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.google-stars {
+    color: #c9a227;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.google-rating strong {
+    color: #f5f2ea;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.google-text {
+    color: #a9a9a9;
+}
+
+.google-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.google-reviews {
+    color: #a9a9a9;
+}
+
+.google-review-link {
+    color: #c9a227;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.google-review-link i {
+    font-size: 10px;
+}
+
+.google-review-link:hover {
+    color: #f5f2ea;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .google-trust-content {
+        min-height: 44px;
+        padding: 0 12px;
+        gap: 9px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .google-stars {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .google-rating {
+        gap: 5px;
+    }
+
+    .google-rating strong {
+        font-size: 12px;
+    }
+
+    .google-text {
+        display: none;
+    }
+
+    .google-divider {
+        height: 15px;
+    }
+
+    .google-reviews {
+        font-size: 10px;
+    }
+
+    .google-review-link {
+        font-size: 10px;
+    }
+
+    .google-review-link i {
+        font-size: 8px;
+    }
+}
